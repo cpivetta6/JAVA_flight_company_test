@@ -2,7 +2,9 @@ package com.caiopivetta6.domain;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public class Flight implements Serializable{
 
@@ -11,6 +13,13 @@ public class Flight implements Serializable{
 	private Integer id;
 	private Integer number;
 	private Instant date;
+	
+	private Set<Pilot> pilots = new HashSet<>();
+	
+	private Set<Passanger> passangers = new HashSet<>();
+	
+	private Set<Reserve> reserves = new HashSet<>();
+	
 	
 	public Flight() {
 		
@@ -21,6 +30,32 @@ public class Flight implements Serializable{
 		this.id = id;
 		this.number = number;
 		this.date = date;
+	}
+	
+	
+
+	public Set<Reserve> getReserves() {
+		return reserves;
+	}
+
+	public void setReserves(Set<Reserve> reserves) {
+		this.reserves = reserves;
+	}
+
+	public Set<Pilot> getPilots() {
+		return pilots;
+	}
+
+	public void setPilots(Set<Pilot> pilots) {
+		this.pilots = pilots;
+	}
+
+	public Set<Passanger> getPassangers() {
+		return passangers;
+	}
+
+	public void setPassangers(Set<Passanger> passangers) {
+		this.passangers = passangers;
 	}
 
 	public Integer getId() {

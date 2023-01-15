@@ -9,13 +9,15 @@ public class Person implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String name;
-	private Integer genre;
+	private String genre;
+	
+	
 	
 	public Person() {
 		
 	}
 
-	public Person(Integer id, String name, Integer genre) {
+	public Person(Integer id, String name, String genre) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -38,11 +40,11 @@ public class Person implements Serializable {
 		this.name = name;
 	}
 
-	public Integer getGenre() {
+	public String getGenre() {
 		return genre;
 	}
 
-	public void setGenre(Integer genre) {
+	public void setGenre(String genre) {
 		this.genre = genre;
 	}
 

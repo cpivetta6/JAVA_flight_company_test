@@ -1,7 +1,10 @@
 package com.caiopivetta6.domain;
 
 public class Pilot extends Person{
-
+ 
+	
+	private static final long serialVersionUID = 1L;
+	
 	private String license;
 	
 	
@@ -10,7 +13,7 @@ public class Pilot extends Person{
 	}
 
 
-	public Pilot(Integer id, String name, Integer genre, String license) {
+	public Pilot(Integer id, String name, String genre, String license) {
 		super(id, name, genre);
 		this.license = license;
 		// TODO Auto-generated constructor stub
@@ -28,6 +31,7 @@ public class Pilot extends Person{
 	
 	
 	
+		
 	
 	
 	
