@@ -13,6 +13,7 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -27,11 +28,7 @@ public abstract class Person implements Serializable {
 	private String name;
 	private String genre;
 	
-	@ManyToOne
-	@JoinColumn(name = "flight_id")
-	private Set<Flight> flights = new HashSet<>();
 	
-	private Reserve reserve;
 	
 	
 	public Person() {
@@ -47,21 +44,6 @@ public abstract class Person implements Serializable {
 	
 	
 
-	public Set<Flight> getFlights() {
-		return flights;
-	}
-
-	public void setFlights(Set<Flight> flights) {
-		this.flights = flights;
-	}
-
-	public Reserve getReserve() {
-		return reserve;
-	}
-
-	public void setReserve(Reserve reserve) {
-		this.reserve = reserve;
-	}
 
 	public Integer getId() {
 		return id;

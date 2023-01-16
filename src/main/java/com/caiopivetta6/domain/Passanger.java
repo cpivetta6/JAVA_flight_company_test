@@ -4,9 +4,13 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,12 +22,14 @@ public class Passanger extends Person {
 
 	private Instant birth;
 	
+	@JsonBackReference
+	@OneToOne(mappedBy = "passanger")
+	private Reserve reserve;
 	
 	
 	@ElementCollection
 	@CollectionTable(name = "phone")
 	private Set<String> phone = new HashSet<>();
-	
 	
 
 	public Passanger() {
@@ -36,6 +42,14 @@ public class Passanger extends Person {
 		// TODO Auto-generated constructor stub
 	}
 	
+
+	public Reserve getReserve() {
+		return reserve;
+	}
+
+	public void setReserve(Reserve reserve) {
+		this.reserve = reserve;
+	}
 
 	public Set<String> getPhone() {
 		return phone;

@@ -6,11 +6,17 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -25,42 +31,44 @@ public class Flight implements Serializable{
 	private Integer number;
 	private Instant date;
 	
-	@OneToMany(mappedBy = "flights")
-	private Set<Pilot> pilots = new HashSet<>();
+	@JsonManagedReference
+	@OneToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "pilot_id")
+	private Pilot pilot;
 	
+	@JsonBackReference
 	@OneToMany(mappedBy = "flight")
-	private Set<Passanger> passangers = new HashSet<>();
-	
+	private Set<Reserve> reserves = new HashSet<>();
 	
 	
 	public Flight() {
 		
 	}
 
-	public Flight(Integer id, Integer number, Instant date) {
+	public Flight(Integer id, Integer number, Instant date, Pilot pilot) {
 		super();
 		this.id = id;
 		this.number = number;
 		this.date = date;
+		this.pilot = pilot;
 	}
 	
 	
 
-
-	public Set<Pilot> getPilots() {
-		return pilots;
+	public Pilot getPilot() {
+		return pilot;
 	}
 
-	public void setPilots(Set<Pilot> pilots) {
-		this.pilots = pilots;
+	public void setPilot(Pilot pilot) {
+		this.pilot = pilot;
 	}
 
-	public Set<Passanger> getPassangers() {
-		return passangers;
+	public Set<Reserve> getReserves() {
+		return reserves;
 	}
 
-	public void setPassangers(Set<Passanger> passangers) {
-		this.passangers = passangers;
+	public void setReserves(Set<Reserve> reserves) {
+		this.reserves = reserves;
 	}
 
 	public Integer getId() {

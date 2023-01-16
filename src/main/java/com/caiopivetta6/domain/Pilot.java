@@ -1,6 +1,9 @@
 package com.caiopivetta6.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -9,6 +12,10 @@ public class Pilot extends Person{
  
 	
 	private static final long serialVersionUID = 1L;
+	
+	@JsonBackReference
+	@OneToOne(mappedBy = "pilot")
+	private Flight flight;
 	
 	private String license;
 	
@@ -24,8 +31,18 @@ public class Pilot extends Person{
 		// TODO Auto-generated constructor stub
 	}
 	
-
 	
+	
+
+	public Flight getFlight() {
+		return flight;
+	}
+
+
+	public void setFlight(Flight flight) {
+		this.flight = flight;
+	}
+
 
 	public String getLicense() {
 		return license;
