@@ -6,19 +6,31 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "flight_tb")
 public class Flight implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private Integer number;
 	private Instant date;
 	
+	@OneToMany(mappedBy = "flights")
 	private Set<Pilot> pilots = new HashSet<>();
 	
+	@OneToMany(mappedBy = "flight")
 	private Set<Passanger> passangers = new HashSet<>();
 	
-	private Set<Reserve> reserves = new HashSet<>();
 	
 	
 	public Flight() {
@@ -34,13 +46,6 @@ public class Flight implements Serializable{
 	
 	
 
-	public Set<Reserve> getReserves() {
-		return reserves;
-	}
-
-	public void setReserves(Set<Reserve> reserves) {
-		this.reserves = reserves;
-	}
 
 	public Set<Pilot> getPilots() {
 		return pilots;

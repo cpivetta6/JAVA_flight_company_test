@@ -1,9 +1,14 @@
 package com.caiopivetta6.domain;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class ReservePk {
+import jakarta.persistence.Embeddable;
 
+@Embeddable
+public class ReservePk implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	private Passanger passanger;
 	private Flight flight;
 	

@@ -1,16 +1,37 @@
 package com.caiopivetta6.domain;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
-public class Person implements Serializable {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Person implements Serializable {
 
 	
 	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
 	private String genre;
 	
+	@ManyToOne
+	@JoinColumn(name = "flight_id")
+	private Set<Flight> flights = new HashSet<>();
+	
+	private Reserve reserve;
 	
 	
 	public Person() {
@@ -22,6 +43,24 @@ public class Person implements Serializable {
 		this.id = id;
 		this.name = name;
 		this.genre = genre;
+	}
+	
+	
+
+	public Set<Flight> getFlights() {
+		return flights;
+	}
+
+	public void setFlights(Set<Flight> flights) {
+		this.flights = flights;
+	}
+
+	public Reserve getReserve() {
+		return reserve;
+	}
+
+	public void setReserve(Reserve reserve) {
+		this.reserve = reserve;
 	}
 
 	public Integer getId() {

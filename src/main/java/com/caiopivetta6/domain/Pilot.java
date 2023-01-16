@@ -1,5 +1,10 @@
 package com.caiopivetta6.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "Pilot_tb")
 public class Pilot extends Person{
  
 	
@@ -18,7 +23,9 @@ public class Pilot extends Person{
 		this.license = license;
 		// TODO Auto-generated constructor stub
 	}
+	
 
+	
 
 	public String getLicense() {
 		return license;

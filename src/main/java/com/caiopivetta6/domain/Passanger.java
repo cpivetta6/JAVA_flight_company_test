@@ -4,6 +4,13 @@ import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "passanger_tb")
 public class Passanger extends Person {
 
 	
@@ -11,7 +18,13 @@ public class Passanger extends Person {
 
 	private Instant birth;
 	
+	
+	
+	@ElementCollection
+	@CollectionTable(name = "phone")
 	private Set<String> phone = new HashSet<>();
+	
+	
 
 	public Passanger() {
 		
