@@ -48,6 +48,7 @@ public class FlightCompanyApplication implements CommandLineRunner{
 		
 		//PASSANGER AND PILOT
 		
+		
 		Passanger p1 = new Passanger(null, "Julia Forest", "F", sdf.parse("11/09/2095").toInstant());
 		Passanger p2 = new Passanger(null, "Carlos Crimes", "M", sdf.parse("11/09/1990").toInstant());
 		Passanger p3 = new Passanger(null, "Benzema Karim", "M", sdf.parse("11/09/1990").toInstant());
